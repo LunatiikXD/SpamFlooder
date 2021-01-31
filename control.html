@@ -1,0 +1,36 @@
+<script src="flood.js"></script>
+<script>
+var curPass='Q28wMXBlMDI';
+  var userPrompt=prompt('Username for control panel:');
+  if (userPrompt === 'Unzor'){
+  var passPrompt=prompt('Password for control panel:');
+    if (passPrompt === atob(curPass)){
+      alert('Welcome, ' + userPrompt +'!');
+    }
+  else if (passPrompt !== atob(curPass)){
+    alert('Wrong password!');
+    location.replace('index.html');
+  }} else if (userPrompt !== 'Unzor'){
+    alert('No username found!');
+    location.replace('index.html');
+  }
+  
+  function banIP(ip){
+    var input='if (document.getElementById("ipAdress").value === "' + ip + '"){location.replace("banned.html");}';
+    alert('Put this code in the JS code: ' + input);
+  }
+</script>
+<h1>
+  Execute Spam
+</h1>
+<input id="mailToSpam" placeholder="Spam mail here..."></input>
+<button onclick="mailSpammer.send('3019074@students.ankenyschools.org', 'Co01pe02', document.getElementById('mailToSpam').value, '3019074@students.ankenyschools.org', 'A SpamFlooder message', 'You have been spammed by request because someone went on our website, and requested it. This is usually due to you spamming, but if it was an error, please contact me. Thank you.');">
+  Spam!
+</button>
+<h1>
+  IP Ban
+</h1>
+<input id="ipban"></input>
+<button onclick="banIP(document.getElementById('ipban').value)">
+  Get code for ban
+</button>

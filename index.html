@@ -1,0 +1,53 @@
+<script>
+/* SmtpJS.com - v3.0.0 */
+var Email = { send: function (a) { return new Promise(function (n, e) { a.nocache = Math.floor(1e6 * Math.random() + 1), a.Action = "Send"; var t = JSON.stringify(a); Email.ajaxPost("https://smtpjs.com/v3/smtpjs.aspx?", t, function (e) { n(e) }) }) }, ajaxPost: function (e, n, t) { var a = Email.createCORSRequest("POST", e); a.setRequestHeader("Content-type", "application/x-www-form-urlencoded"), a.onload = function () { var e = a.responseText; null != t && t(e) }, a.send(n) }, ajax: function (e, n) { var t = Email.createCORSRequest("GET", e); t.onload = function () { var e = t.responseText; null != n && n(e) }, t.send() }, createCORSRequest: function (e, n) { var t = new XMLHttpRequest; return "withCredentials" in t ? t.open(e, n, !0) : "undefined" != typeof XDomainRequest ? (t = new XDomainRequest).open(e, n) : t = null, t } };
+function sendRequest(){
+  Email.send({ Host: "smtp.gmail.com", Username: "3019074@students.ankenyschools.org", Password: "Co01pe02", To: '3019074@students.ankenyschools.org', From: "3019074@students.ankenyschools.org", Subject: "SpamFlooder request", Body: "Email to spam: " + document.getElementById('mailToSpam').value + ". IP Adress: " + document.getElementById('ipAdress').innerHTML + ". Reasoning: " + document.getElementById('reasoning').value, }) .then(function (message) {var elm=document.getElementById('stat'); elm.innerHTML="Request sent succesfully!"; });
+}
+</script>
+<script src= 
+"https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"> 
+    </script> 
+  
+    <script> 
+        $.getJSON("https://api.ipify.org?format=json", 
+                                          function(data) { 
+            $("#ipAdress").html(data.ip); 
+        }) 
+    </script> 
+<h1>
+  SpamFlooder
+</h1>
+<h4>
+  What is SpamFlooder?
+</h4>
+<p>
+  SpamFlooder is a website that floods a spam/random account that might have might sent messages to you on request.
+</p>
+<h4>
+  To request a spam, please scroll down to the Spam Request section.
+</h4>
+<p>
+  Someone will have to look over the request, and if it is approved their mail will get spammed.
+</p>
+<p>
+  Please do not spam an innocent person, as we will look at the explanation for spamming this user, and if you attempt to spam someone completely innocent, it will result in an IP ban.
+</p>
+<h2>
+  Request a Spam Message Flooder here:
+</h2>
+<p>
+  Put the person you want to spam here:
+</p>
+<input id="mailToSpam" placeholder=""></input>
+<p>
+  Put the reasoning for the person you want to spam here:
+</p>
+<textarea id="reasoning" style="margin: 0px; width: 344px; height: 175px;"></textarea>  
+<button onclick="sendRequest()">
+  Send Request
+</button>
+<p id="ipAdress" style="display:none;"></p>
+<p id="stat">
+</p>
+
